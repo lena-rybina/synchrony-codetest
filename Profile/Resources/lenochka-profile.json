@@ -1,0 +1,22 @@
+{
+    "id": "93466816-5f6a-11eb-ae93-0242ac130002",
+    "name":  "Ielena Rybina",
+    "profile_url": "https://media-exp1.licdn.com/dms/image/C4D03AQH_wA_nIVglcA/profile-displayphoto-shrink_200_200/0/1595386329850?e=1617235200&v=beta&t=drQRCH3vWSUfYhpi9iBJmqTeStjAzVUvGmdl1RXm-74",
+    "social_list": [{
+        "id":"93466816-5f6a-11eb-ae93-0242ac130001",
+        "type": "linkedIn",
+        "path": "https://www.linkedin.com/in/ielena-rybina/"
+    }],
+    "experience_list": [{
+        "id": "93466816-5f6a-11eb-ae93-0242ac130003",
+        "company_name": "Octo Ent",
+        "type": "work",
+        "position": "Jr. iOS Developer",
+        "start_date": "2019-08-01",
+        "details": [
+            "One",
+            "two",
+            "three"
+        ]
+    }]
+}
