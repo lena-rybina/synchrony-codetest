@@ -18,6 +18,7 @@ struct ExperienceRow {
 struct SocialRow {
     let name: String
     let path: String
+    let type: SocialType
 }
 
 enum ProfileRows {

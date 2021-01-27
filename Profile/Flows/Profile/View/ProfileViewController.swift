@@ -52,6 +52,8 @@ class ProfileViewController: UIViewController {
 
         layout()
         bind()
+        
+        title = "Profile"
     }
 
     /// Binding view model actions to view
@@ -68,8 +70,9 @@ class ProfileViewController: UIViewController {
                 self.rows = rows
             case .failure(let error):
                 /// TODO: Handle alert?
-                self.rows = []
-                print("[DEBUG] - Error happened - \(error.localizedDescription)")
+
+               self.rows = []
+               print("[DEBUG] - Error happened - \(error.localizedDescription)")
             }
 
             /// Reloading tableView
@@ -118,6 +121,7 @@ extension ProfileViewController: UITableViewDataSource {
                                                      for: indexPath) as! TextCell
             cell.selectionStyle = .none
             cell.titleLabel.text = name
+            cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
 
             return cell
 
@@ -133,6 +137,7 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(ExperienceCell.self)",
                                                      for: indexPath) as! ExperienceCell
             cell.titleLabel.text = experience.companyName
+            cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
             cell.subtitleLabel.text = experience.position
             cell.dateLabel.text = "\(experience.startDate) - \(experience.endDate)"
             cell.detailImageView.image = UIImage(systemName: "chevron.right")
@@ -143,6 +148,7 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(SocialCell.self)",
                                                      for: indexPath) as! SocialCell
             cell.titleLabel.text = social.name
+            cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
             cell.subtitleLabel.text = social.path
             cell.subtitleLabel.textColor = .blue
             cell.selectionStyle = .none
@@ -160,15 +166,26 @@ extension ProfileViewController: UITableViewDelegate {
         let row = rows[indexPath.row]
         switch row {
         case .experience(let experienceDetails):
-            let experienceDetailsCopy = experienceDetails.details.joined(separator: "\n")
+            let experienceDetailsCopy = experienceDetails.details.joined(separator: "\n\n")
             let titleCopy = "\(experienceDetails.position) - \(experienceDetails.startDate) - \(experienceDetails.endDate)"
 
             /// Triggering coordinator action
             coordinator?.startDetails(for: experienceDetailsCopy,
                                       withTitle: titleCopy)
         case .social(let socialDetails):
-            guard let url = URL(string: socialDetails.path) else { return }
-            /// Opening as external link
+            var openURL: String
+            switch socialDetails.type {
+            case .email:
+                openURL = "mailto:\(socialDetails.path)"
+            case .gitHub,
+                 .linkedIn:
+                openURL = socialDetails.path
+            case .phone:
+                openURL = "tel://\(socialDetails.path)"
+            }
+
+            guard let url = URL(string: openURL) else { return }
+            /// Opening as an external link
             UIApplication.shared.open(url,
                                       options: [:],
                                       completionHandler: nil)

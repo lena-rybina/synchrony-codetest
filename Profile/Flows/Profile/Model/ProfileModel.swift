@@ -52,11 +52,13 @@ class ProfileModel {
         /// Appending social rows
         /// Iterate and create row from social list
         profile.socialList.forEach { social in
+            let socialType = social.type
             let socialPath = social.path
             let socialName = social.type.rawValue.capitalized
 
             let row = SocialRow(name: socialName,
-                                path: socialPath)
+                                path: socialPath,
+                                type: socialType)
             result.append(.social(row))
         }
 

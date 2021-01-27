@@ -6,6 +6,21 @@
         "id":"93466816-5f6a-11eb-ae93-0242ac130001",
         "type": "linkedIn",
         "path": "https://www.linkedin.com/in/ielena-rybina/"
+    },
+    {
+        "id":"93466816-5f6a-11eb-ae93-0242ac130004",
+        "type": "gitHub",
+        "path": "https://github.com/lena-rybina"
+    },
+    {
+        "id":"93466816-5f6a-11eb-ae93-0242ac130005",
+        "type": "email",
+        "path": "ielena.rybina@gmail.com"
+    },
+    {
+        "id":"93466816-5f6a-11eb-ae93-0242ac130006",
+        "type": "phone",
+        "path": "+1(845)480-8024"
     }],
     "experience_list": [{
         "id": "93466816-5f6a-11eb-ae93-0242ac130003",
@@ -21,6 +36,57 @@
             " - Pushing for an initiative of fixing “broken-windows” for our team to achieve better code quality and stability.",
             " - Working closely with a senior manager on daily pull-request reviews and crash monitoring and handled the implementation of new analytic data points to improve marketing targeting.",
             " - Building custom UI components upon requests from the design team."
+        ]
+    },
+    {
+        "id": "93466816-5f6a-11eb-ae93-0242ac130007",
+        "company_name": "Personal projects",
+        "type": "projects",
+        "position": "Jr. iOS Developer",
+        "start_date": "Dec 2019",
+        "details": [
+            "Nonogram",
+            " - Developing puzzle game using SwiftUI taking advantage over declarative programming architecture and including new UI elements like LazyGrids",
+            "Alpaca Barbershop",
+            " - Created application for children in SwiftUI creating custom UI components",
+            "Animal sound",
+            " - Quiz game for kids to help them learn animal sounds made with AVFoundationKit"
+        ]
+    },
+    {
+        "id": "93466816-5f6a-11eb-ae93-0242ac130008",
+        "company_name": "iOS Deverlopers Nanodegree Program",
+        "type": "education",
+        "position": "Udacity",
+        "start_date": "Dec 2019",
+        "end_date": "May 2020",
+        "details": [
+            " - 6 month iOS Developer Learning program which included completion of various projects starting from basics of Swift to building apps using UIKit",
+            " - Modules included View Presentations and Segues, Delegate Pattern, Table Views and Navigation"
+        ]
+    },
+    {
+        "id": "93466816-5f6a-11eb-ae93-0242ac130009",
+        "company_name": "Cass Business School, London, UK",
+        "type": "education",
+        "position": "MSc in International Accounting and Finance",
+        "start_date": "2012",
+        "end_date": "2014",
+        "details": [
+            " GPA 3.8",
+            " Relevant modules: Econometrics, Research Methods, Strategic Cost Management, Accounting Information and Capital Markets, Advanced Corporate Finance, Financial Statement Analysis, International Financial Management, Mergers and Acquisitions, Corporate Restructuring"
+        ]
+    },
+    {
+        "id": "93466816-5f6a-11eb-ae93-0242ac130010",
+        "company_name": "National University of ‘Kyiv-Mohyla Academy’, Kyiv, Ukraine",
+        "type": "education",
+        "position": "BSc and MSc in Economics and Entrepreneurship",
+        "start_date": "2008",
+        "end_date": "2016",
+        "details": [
+            " Full Scholarship",
+            " Relevant Modules: Higher Mathematics, Mathematical Modeling, SQL, Econometrics, Statistics, Theory of Probability and Mathematical Statistics."
         ]
     }]
 }
