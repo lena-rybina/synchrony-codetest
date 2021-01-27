@@ -89,8 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				5AA493D725BFB101003AFC27 /* TextCell.swift */,
-				5A07AEA525C0C2F20054F063 /* SocialCell.swift */,
 				5A07AE9D25C082110054F063 /* ImageCell.swift */,
+				5A07AEA525C0C2F20054F063 /* SocialCell.swift */,
 				5A07AEA125C089430054F063 /* ExperienceCell.swift */,
 			);
 			path = Cells;

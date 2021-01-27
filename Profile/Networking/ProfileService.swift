@@ -14,8 +14,8 @@ enum ProfileServiceError: Error {
 class ProfileService {
     class func getUserProfile(completed: @escaping (Result<Profile, Error>)-> ()) {
         let url = URL(string: "https://s3.amazonaws.com/ielena.codetest/lenochka-profile.json")!
-
         URLSession.shared.dataTask(with: url) { data, response, error in
+            /// Forcing main thread, UI will crash on background
             DispatchQueue.main.async {
                 /// Error check
                 if let error = error {
