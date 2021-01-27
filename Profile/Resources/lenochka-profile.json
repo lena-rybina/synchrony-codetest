@@ -1,6 +1,6 @@
 {
     "id": "93466816-5f6a-11eb-ae93-0242ac130002",
-    "name":  "Ielena Rybina",
+    "name":  "Elena Rybina",
     "profile_url": "https://media-exp1.licdn.com/dms/image/C4D03AQH_wA_nIVglcA/profile-displayphoto-shrink_200_200/0/1595386329850?e=1617235200&v=beta&t=drQRCH3vWSUfYhpi9iBJmqTeStjAzVUvGmdl1RXm-74",
     "social_list": [{
         "id":"93466816-5f6a-11eb-ae93-0242ac130001",
@@ -9,14 +9,18 @@
     }],
     "experience_list": [{
         "id": "93466816-5f6a-11eb-ae93-0242ac130003",
-        "company_name": "Octo Ent",
+        "company_name": "Octo Entertainment",
         "type": "work",
         "position": "Jr. iOS Developer",
-        "start_date": "2019-08-01",
+        "start_date": "Aug 2019",
         "details": [
-            "One",
-            "two",
-            "three"
+            " - Working on new projects using RxSwift with MVVM(C) architecture.",
+            " - Coordinating with the team about specs and design, including daily standup and planning meetings.",
+            " - As well as maintaining existing iOS (Swift + MVC) applications.",
+            " - Handling bug-fixes and writing Unit test cases to increase project code coverage.",
+            " - Pushing for an initiative of fixing “broken-windows” for our team to achieve better code quality and stability.",
+            " - Working closely with a senior manager on daily pull-request reviews and crash monitoring and handled the implementation of new analytic data points to improve marketing targeting.",
+            " - Building custom UI components upon requests from the design team."
         ]
     }]
 }

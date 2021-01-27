@@ -8,7 +8,7 @@
 import Foundation
 
 class ProfileModel {
-    func fetchProfile(completed: @escaping (Profile)->()) {
+    func fetchProfile(completed: @escaping (Result<Profile, Error>)-> ()) {
         ProfileService.getUserProfile(completed: completed)
     }
 }

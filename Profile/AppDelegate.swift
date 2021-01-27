@@ -11,13 +11,18 @@ import UIKit
 class AppDelegate: UIResponder,
                    UIApplicationDelegate {
     var window: UIWindow?
+    var profileCoordinator: ProfileCoordinator?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        window?.rootViewController = ProfileViewController(viewModel: ProfileViewModel(model: ProfileModel()))
+        let rootNavigationController = UINavigationController()
+        profileCoordinator = ProfileCoordinator(navigationController: rootNavigationController)
+        profileCoordinator?.start()
+
+        window?.rootViewController = rootNavigationController
 
         return true
     }

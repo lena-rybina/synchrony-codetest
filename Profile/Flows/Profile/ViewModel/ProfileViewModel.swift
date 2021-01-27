@@ -14,12 +14,17 @@ class ProfileViewModel {
         self.model = model
     }
 
-    func fetchProfile(completed: @escaping ([ProfileRows])->()) {
-        model.fetchProfile(completed: { [weak self] profile in
+    func fetchProfile(completed: @escaping (Result<[ProfileRows], Error>)->()) {
+        model.fetchProfile(completed: { [weak self] result in
             guard let self = self else { return }
 
-            let processedRows = self.processProfileToRows(profile)
-            completed(processedRows)
+            switch result {
+            case .success(let profile):
+                let processedRows = self.processProfileToRows(profile)
+                completed(.success(processedRows))
+            case .failure(let error):
+                completed(.failure(error))
+            }
         })
     }
 
@@ -35,11 +40,13 @@ class ProfileViewModel {
             let position = experience.position
             let startDate = experience.startDate
             let endDate = experience.endDate ?? "Present"
+            let details = experience.details
 
             let row = ExperienceRow(companyName: companyName,
                                     position: position,
                                     startDate: startDate,
-                                    endDate: endDate)
+                                    endDate: endDate,
+                                    details: details)
 
             result.append(.experience(row))
         }
@@ -58,7 +65,7 @@ class ProfileViewModel {
 
         profile.socialList.forEach { social in
             let socialPath = social.path
-            let socialName = social.type.rawValue
+            let socialName = social.type.rawValue.capitalized
 
             let row = SocialRow(name: socialName,
                                 path: socialPath)

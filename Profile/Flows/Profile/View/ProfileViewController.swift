@@ -7,23 +7,27 @@
 
 import UIKit
 import Foundation
+import Kingfisher
 
 class ProfileViewController: UIViewController {
     private var rows: [ProfileRows] = []
 
     let viewModel: ProfileViewModel
+    weak var coordinator: ProfileCoordinator?
 
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: layout)
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero)
+        tableView.register(TextCell.self,
+                           forCellReuseIdentifier: "\(TextCell.self)")
 
+        tableView.register(ImageCell.self,
+                           forCellReuseIdentifier: "\(ImageCell.self)")
+        tableView.register(ExperienceCell.self,
+                           forCellReuseIdentifier: "\(ExperienceCell.self)")
+        tableView.register(SocialCell.self,
+                           forCellReuseIdentifier: "\(SocialCell.self)")
 
-        collectionView.alwaysBounceVertical = true
-        collectionView.register(TextCell.self,
-                                forCellWithReuseIdentifier: "\(TextCell.self)")
-
-        return collectionView
+        return tableView
     }()
 
     init(viewModel: ProfileViewModel) {
@@ -44,60 +48,104 @@ class ProfileViewController: UIViewController {
     }
 
     private func bind() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
 
-        viewModel.fetchProfile { [weak self] rows in
+        viewModel.fetchProfile { [weak self] result in
             guard let self = self else { return }
 
-            self.rows = rows
-            self.collectionView.reloadData()
+            switch result {
+            case .success(let rows):
+                self.rows = rows
+            case .failure(let error):
+                self.rows = []
+                print("[DEBUG] - Error happened - \(error.localizedDescription)")
+            }
+
+            self.tableView.reloadData()
         }
     }
 
     private func layout() {
-        collectionView.backgroundColor = .white
+        view.backgroundColor = .white
+        tableView.backgroundColor = .white
 
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.tableFooterView = UIView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
 
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width,
-               height: 80)
-    }
-}
-
-extension ProfileViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         rows.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(TextCell.self)", for: indexPath) as! TextCell
-
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = rows[indexPath.row]
+
         switch row {
         case .name(let name):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(TextCell.self)",
+                                                          for: indexPath) as! TextCell
+            cell.selectionStyle = .none
             cell.titleLabel.text = name
+
+            return cell
+
+        case .profileImage(let imageURL):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(ImageCell.self)",
+                                                          for: indexPath) as! ImageCell
+            cell.profileImageView.kf.setImage(with: imageURL)
+            cell.selectionStyle = .none
+            return cell
+
+        case .experience(let experience) :
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(ExperienceCell.self)",
+                                                          for: indexPath) as! ExperienceCell
+            cell.titleLabel.text = experience.companyName
+            cell.subtitleLabel.text = experience.position
+            cell.dateLabel.text = "\(experience.startDate) - \(experience.endDate)"
+            cell.detailImageView.image = UIImage(systemName: "chevron.right")
+            cell.selectionStyle = .none
+            return cell
+
+        case .social(let social) :
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(SocialCell.self)",
+                                                          for: indexPath) as! SocialCell
+            cell.titleLabel.text = social.name
+            cell.subtitleLabel.text = social.path
+            cell.subtitleLabel.textColor = .blue
+            cell.selectionStyle = .none
+            return cell
+        }
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        let row = rows[indexPath.row]
+        switch row {
+        case .experience(let experienceDetails):
+            let experienceDetailsCopy = experienceDetails.details.joined(separator: "\n")
+            coordinator?.startDetails(for: experienceDetailsCopy,
+                                      withTitle: "\(experienceDetails.position) - \(experienceDetails.startDate) - \(experienceDetails.endDate)")
+        case .social(let socialDetails):
+            guard let url = URL(string: socialDetails.path) else { return }
+            UIApplication.shared.open(url,
+                                      options: [:],
+                                      completionHandler: nil)
         default: break
         }
-
-        cell.backgroundColor = .red
-
-        return cell
     }
 }

@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A07AE9A25C081D60054F063 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5A07AE9925C081D60054F063 /* Kingfisher */; };
+		5A07AE9E25C082110054F063 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A07AE9D25C082110054F063 /* ImageCell.swift */; };
+		5A07AEA225C089430054F063 /* ExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A07AEA125C089430054F063 /* ExperienceCell.swift */; };
+		5A07AEA625C0C2F20054F063 /* SocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A07AEA525C0C2F20054F063 /* SocialCell.swift */; };
+		5A07AEAB25C0DBAB0054F063 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A07AEAA25C0DBAB0054F063 /* DetailsViewController.swift */; };
 		5AA493D825BFB101003AFC27 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA493D725BFB101003AFC27 /* TextCell.swift */; };
 		5AA493DC25BFB4EE003AFC27 /* ProfileRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA493DB25BFB4EE003AFC27 /* ProfileRows.swift */; };
 		5AF47B2C25BF8FCF0021A5D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF47B2B25BF8FCF0021A5D8 /* AppDelegate.swift */; };
@@ -22,6 +27,7 @@
 		5AF47BDC25BFA05D0021A5D8 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF47BDB25BFA05D0021A5D8 /* Social.swift */; };
 		5AF47BE725BFA2250021A5D8 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF47BE625BFA2250021A5D8 /* ProfileModel.swift */; };
 		5AF47BEB25BFA22C0021A5D8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF47BEA25BFA22C0021A5D8 /* ProfileViewModel.swift */; };
+		5AFD383125C0DE8200CEB771 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD383025C0DE8200CEB771 /* ProfileCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A07AE9D25C082110054F063 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		5A07AEA125C089430054F063 /* ExperienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceCell.swift; sourceTree = "<group>"; };
+		5A07AEA525C0C2F20054F063 /* SocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCell.swift; sourceTree = "<group>"; };
+		5A07AEAA25C0DBAB0054F063 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5AA493D725BFB101003AFC27 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		5AA493DB25BFB4EE003AFC27 /* ProfileRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRows.swift; sourceTree = "<group>"; };
 		5AF47B2825BF8FCF0021A5D8 /* Profile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +63,7 @@
 		5AF47BDB25BFA05D0021A5D8 /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		5AF47BE625BFA2250021A5D8 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		5AF47BEA25BFA22C0021A5D8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		5AFD383025C0DE8200CEB771 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A07AE9A25C081D60054F063 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,10 +85,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5AA493D625BFB0E3003AFC27 /* UIComponents */ = {
+		5A07AEB025C0DBBD0054F063 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5AA493D725BFB101003AFC27 /* TextCell.swift */,
+				5A07AEA525C0C2F20054F063 /* SocialCell.swift */,
+				5A07AE9D25C082110054F063 /* ImageCell.swift */,
+				5A07AEA125C089430054F063 /* ExperienceCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5A07AEB125C0DBC50054F063 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5A07AEAA25C0DBAB0054F063 /* DetailsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5AA493D625BFB0E3003AFC27 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5A07AEB125C0DBC50054F063 /* Controllers */,
+				5A07AEB025C0DBBD0054F063 /* Cells */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -127,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				5AF47BD425BF9F6E0021A5D8 /* Profile */,
+				5AFD383025C0DE8200CEB771 /* ProfileCoordinator.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -209,6 +242,9 @@
 			dependencies = (
 			);
 			name = Profile;
+			packageProductDependencies = (
+				5A07AE9925C081D60054F063 /* Kingfisher */,
+			);
 			productName = Profile;
 			productReference = 5AF47B2825BF8FCF0021A5D8 /* Profile.app */;
 			productType = "com.apple.product-type.application";
@@ -258,6 +294,9 @@
 				Base,
 			);
 			mainGroup = 5AF47B1F25BF8FCF0021A5D8;
+			packageReferences = (
+				5A07AE9825C081D60054F063 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 5AF47B2925BF8FCF0021A5D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -296,6 +335,7 @@
 			files = (
 				5AA493DC25BFB4EE003AFC27 /* ProfileRows.swift in Sources */,
 				5AF47B6C25BF91090021A5D8 /* ProfileViewController.swift in Sources */,
+				5A07AE9E25C082110054F063 /* ImageCell.swift in Sources */,
 				5AF47BE725BFA2250021A5D8 /* ProfileModel.swift in Sources */,
 				5AF47B9225BF9C300021A5D8 /* ProfileService.swift in Sources */,
 				5AF47BDC25BFA05D0021A5D8 /* Social.swift in Sources */,
@@ -304,6 +344,10 @@
 				5AF47BD625BFA00D0021A5D8 /* Experience.swift in Sources */,
 				5AF47BEB25BFA22C0021A5D8 /* ProfileViewModel.swift in Sources */,
 				5AF47B2C25BF8FCF0021A5D8 /* AppDelegate.swift in Sources */,
+				5A07AEAB25C0DBAB0054F063 /* DetailsViewController.swift in Sources */,
+				5A07AEA625C0C2F20054F063 /* SocialCell.swift in Sources */,
+				5AFD383125C0DE8200CEB771 /* ProfileCoordinator.swift in Sources */,
+				5A07AEA225C089430054F063 /* ExperienceCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +606,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A07AE9825C081D60054F063 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A07AE9925C081D60054F063 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A07AE9825C081D60054F063 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5AF47B2025BF8FCF0021A5D8 /* Project object */;
 }

@@ -12,6 +12,7 @@ struct ExperienceRow {
     let position: String
     let startDate: String
     let endDate: String
+    let details: [String]
 }
 
 struct SocialRow {

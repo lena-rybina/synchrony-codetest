@@ -7,18 +7,40 @@
 
 import Foundation
 
+enum ProfileServiceError: Error {
+    case missingData
+}
+
 class ProfileService {
-    class func getUserProfile(completed: @escaping (Profile)-> ()) {
-        let bundle = Bundle.main
-        let dataPath = bundle.path(forResource: "lenochka-profile",
-                                   ofType: "json")!
+    class func getUserProfile(completed: @escaping (Result<Profile, Error>)-> ()) {
+        let url = URL(string: "https://s3.amazonaws.com/ielena.codetest/lenochka-profile.json")!
 
-        let data = try! Data(contentsOf: URL(fileURLWithPath: dataPath))
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                /// Error check
+                if let error = error {
+                    completed(.failure(error))
+                    return
+                }
 
-        let decoder = JSONDecoder()
-        let result = try! decoder.decode(Profile.self,
-                                         from: data)
+                /// Check if data exists
+                guard let data = data else {
+                    completed(.failure(ProfileServiceError.missingData))
+                    return
+                }
 
-        completed(result)
+                /// Try to decode
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(Profile.self,
+                                                     from: data)
+
+                    completed(.success(profile))
+
+                } catch let error {
+                    completed(.failure(error))
+                }
+            }
+        }.resume()
     }
 }
